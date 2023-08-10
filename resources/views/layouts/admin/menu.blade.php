@@ -68,7 +68,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ asset('/') }}index3.html" class="nav-link">
+                            <a href="/kategori" class="nav-link {{ Request::is('kategori') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Kategori</p>
                             </a>

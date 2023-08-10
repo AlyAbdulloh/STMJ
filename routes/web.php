@@ -21,7 +21,7 @@ Route::get('/', function () {
 });
 
 // cotroller kategori
-Route::resource('kategori', KategoriController::class);
+Route::get('/kategori', [KategoriController::class, 'index']);
 
 //controller menu
 Route::get('/menu', [MenusController::class, 'index']);

@@ -17,7 +17,8 @@
                     </div>
                     <div class="col-6 d-flex flex-row-reverse">
                         <form class="d-flex" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                                id="searchMenu">
                             <button class="btn btn-outline-success" type="submit">Search</button>
                         </form>
                     </div>
@@ -223,5 +224,23 @@
                 }
             });
         }
+
+        //search data
+        $(document).on('keyup', '#searchMenu', function(e) {
+            e.preventDefault();
+
+            let val = $(this).val();
+
+            $.ajax({
+                url: "/menu",
+                type: "get",
+                data: {
+                    'val': val
+                },
+                success: (response) => {
+                    $('#table-data').html(response);
+                }
+            });
+        });
     </script>
 @endsection

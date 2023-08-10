@@ -11,8 +11,39 @@ use Illuminate\Support\Facades\Storage;
 
 class MenusController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+
+        if ($request->ajax()) {
+            $menu = Menu::where('name', 'LIKE', '%' . $request->val . '%')
+                ->paginate(5);
+            if ($menu->count() > 0) {
+                return view('admin.pagination.paginate_menu', compact('menu'))->render();
+            } else {
+                return response()->json(
+                    '
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Nama</th>
+                                <th>Kategori</th>
+                                <th>Harga</th>
+                                <th>Deskripsi</th>
+                                <th>Gambar</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="text-center">
+                                <td colspan="6">No matching records found</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    '
+                );
+            }
+        }
         $kategori = Kategori::all();
         $menu = Menu::with('kategori')->latest()->paginate(5);
         return view('admin.menu', compact(['kategori', 'menu']));
