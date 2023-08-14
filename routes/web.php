@@ -3,6 +3,7 @@
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MenusController;
+use App\Models\Kategori;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,8 @@ Route::get('/', function () {
 
 // cotroller kategori
 Route::get('/kategori', [KategoriController::class, 'index']);
+Route::get('/pagination/paginate-data-kategori', [KategoriController::class, 'pagination']);
+Route::post('/Katgori-store', [KategoriController::class, 'store'])->name('kategori.store');
 
 //controller menu
 Route::get('/menu', [MenusController::class, 'index']);
