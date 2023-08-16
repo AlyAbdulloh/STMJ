@@ -37,7 +37,8 @@
                                             {{ $item->name }}
                                         </div>
                                         <div class="btn-delete">
-                                            <a href="" class="text-danger">
+                                            <a href="" class="text-danger hapus-kategori"
+                                                data-id="{{ $item->id }}">
                                                 <i class="fas fa-times"></i>
                                             </a>
                                         </div>
@@ -109,6 +110,24 @@
                     console.log(response);
                 }
             });
+        });
+
+        //hapus kategori
+        $(document).on('click', '.hapus-kategori', function(e) {
+            e.preventDefault()
+
+            id_kategori = $(this).data('id');
+
+            $.ajax({
+                url: "/kategori-delete/" + id_kategori,
+                type: "delete",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: (response) => {
+                    $('#table-data').html(response);
+                }
+            })
         })
     </script>
 

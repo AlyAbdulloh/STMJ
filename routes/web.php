@@ -25,6 +25,7 @@ Route::get('/', function () {
 Route::get('/kategori', [KategoriController::class, 'index']);
 Route::get('/pagination/paginate-data-kategori', [KategoriController::class, 'pagination']);
 Route::post('/Katgori-store', [KategoriController::class, 'store'])->name('kategori.store');
+Route::delete('/kategori-delete/{id}', [KategoriController::class, 'destroy']);
 
 //controller menu
 Route::get('/menu', [MenusController::class, 'index']);

@@ -30,4 +30,11 @@ class KategoriController extends Controller
         $kategori = Kategori::orderBy('id', 'desc')->paginate(3);
         return view('admin.pagination.paginate_ketegori', compact('kategori'));
     }
+
+    public function destroy(string $id)
+    {
+        Kategori::find($id)->delete();
+        $kategori = Kategori::orderBy('id', 'desc')->paginate(3);
+        return view('admin.pagination.paginate_ketegori', compact('kategori'));
+    }
 }

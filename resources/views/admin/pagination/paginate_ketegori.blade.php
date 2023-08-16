@@ -10,7 +10,7 @@
                             {{ $item->name }}
                         </div>
                         <div class="btn-delete">
-                            <a href="" class="text-danger">
+                            <a href="" class="text-danger hapus-kategori" data-id="{{ $item->id }}">
                                 <i class="fas fa-times"></i>
                             </a>
                         </div>
