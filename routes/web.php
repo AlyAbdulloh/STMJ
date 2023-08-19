@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MenusController;
 use App\Models\Kategori;
@@ -33,3 +34,6 @@ Route::post('/Menu-store', [MenusController::class, 'store'])->name('menu.store'
 Route::post('/Menu-update', [MenusController::class, 'update'])->name('menu.update');
 Route::delete('/menu-delete/{id}', [MenusController::class, 'destroy']);
 Route::get('/pagination/paginate-data-menu', [MenusController::class, 'pagination']);
+
+//Login
+Route::get('/login', [LoginController::class, 'index']);
