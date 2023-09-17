@@ -4,6 +4,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MenusController;
+use App\Http\Controllers\RegisterController;
 use App\Models\Kategori;
 use Illuminate\Support\Facades\Route;
 
@@ -37,3 +38,7 @@ Route::get('/pagination/paginate-data-menu', [MenusController::class, 'paginatio
 
 //Login
 Route::get('/login', [LoginController::class, 'index']);
+
+//register
+Route::get('/register', [RegisterController::class, 'index']);
+Route::post('/register', [RegisterController::class, 'store']);
