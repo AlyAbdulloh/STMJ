@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="{{ asset('/') }}plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('/') }}dist/css/adminlte.min.css">
+
+
 </head>
 
 <body class="hold-transition login-page">
@@ -25,11 +27,20 @@
                 <a href="{{ asset('/') }}index2.html" class="h1">STMJ</a>
             </div>
             <div class="card-body">
+                @if (session()->has('success'))
+                    <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+                        <strong>Registartion successfull! </strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
                 <p class="login-box-msg">Sign in to start your session</p>
 
-                <form action="{{ asset('/') }}index3.html" method="post">
+                <form action="/login" method="POST">
+                    @csrf
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Email">
+                        <input type="text" class="form-control" placeholder="Email" name="username">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -37,7 +48,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Password">
+                        <input type="password" class="form-control" placeholder="Password" name="password">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>

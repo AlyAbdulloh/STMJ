@@ -38,6 +38,7 @@ Route::get('/pagination/paginate-data-menu', [MenusController::class, 'paginatio
 
 //Login
 Route::get('/login', [LoginController::class, 'index']);
+Route::post('/login', [LoginController::class, 'authenticate']);
 
 //register
 Route::get('/register', [RegisterController::class, 'index']);
