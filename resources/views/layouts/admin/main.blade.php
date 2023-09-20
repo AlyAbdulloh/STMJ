@@ -39,8 +39,15 @@
             </ul>
 
             <!-- Right navbar links -->
-            <ul class="navbar-nav ml-auto">
-                <li></li>
+            <ul class="navbar-nav ml-auto mr-3">
+                <li>
+                    <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                        class="text-danger" style="font-size: 20px"><i class="fas fa-sign-out-alt"></i></a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </li>
             </ul>
         </nav>
         <!-- /.navbar -->

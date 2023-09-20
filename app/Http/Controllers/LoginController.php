@@ -41,4 +41,15 @@ class LoginController extends Controller
 
         return back()->with('failed', 'Check your data!');
     }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        request()->session()->invalidate();
+
+        request()->session()->regenerateToken();
+
+        return redirect('/login');
+    }
 }
