@@ -35,6 +35,14 @@
                         </button>
                     </div>
                 @endif
+                @if (session()->has('failed'))
+                    <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+                        <strong>Login failed! </strong>{{ session('failed') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
                 <p class="login-box-msg">Sign in to start your session</p>
 
                 <form action="/login" method="POST">

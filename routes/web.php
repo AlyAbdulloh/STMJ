@@ -20,9 +20,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('admin.dashboard');
+    if (auth()->check()) {
+        if (auth()->user()->role == 'admin') {
+            return redirect('/dashboard');
+        }
+    }
+    return redirect('/login');
 });
 
+Route::get('/dashboard', function () {
+    return view('admin.dashboard');
+})->middleware('admin');
 // cotroller kategori
 Route::get('/kategori', [KategoriController::class, 'index']);
 Route::get('/pagination/paginate-data-kategori', [KategoriController::class, 'pagination']);
@@ -37,7 +45,7 @@ Route::delete('/menu-delete/{id}', [MenusController::class, 'destroy']);
 Route::get('/pagination/paginate-data-menu', [MenusController::class, 'pagination']);
 
 //Login
-Route::get('/login', [LoginController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 
 //register
