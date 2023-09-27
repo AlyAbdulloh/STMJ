@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
@@ -32,6 +33,10 @@ Route::get('/', function () {
 
 // controller dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('admin');
+
+// controller data admin
+Route::get('/dataAdmin', [AdminController::class, 'index'])->middleware('admin');
+
 // cotroller kategori
 Route::get('/kategori', [KategoriController::class, 'index']);
 Route::get('/pagination/paginate-data-kategori', [KategoriController::class, 'pagination']);

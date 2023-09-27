@@ -15,7 +15,7 @@
                     alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">{{ auth()->user()->username }}</a>
+                <a href="#" class="d-block">{{ auth()->user()->name }}</a>
             </div>
         </div>
 
@@ -56,7 +56,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/menu" class="nav-link">
+                            <a href="/dataAdmin" class="nav-link {{ Request::is('dataAdmin') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Admin</p>
                             </a>

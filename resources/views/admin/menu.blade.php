@@ -33,7 +33,7 @@
                             <th>Harga</th>
                             <th>Deskripsi</th>
                             <th>Gambar</th>
-                            <th>Action</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
