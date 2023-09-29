@@ -9,7 +9,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::latest()->paginate(5);
         return view('admin.dataAdmin', ['users' => $users]);
     }
 }
