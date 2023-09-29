@@ -28,6 +28,7 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Nama</th>
                             <th>Email</th>
                             <th>Username</th>
@@ -35,6 +36,15 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($users as $user)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->username }}</td>
+                                <td></td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
