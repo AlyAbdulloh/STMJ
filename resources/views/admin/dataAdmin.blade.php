@@ -46,7 +46,10 @@
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->username }}</td>
                                 <td>
-                                    <a href="" class=" btn mr-2 text-warning" style="font-size: 23px;"><i
+                                    <a href="" class=" btn mr-2 text-warning edit-admin" style="font-size: 23px;"
+                                        data-toggle="modal" data-target="#editAdmin" data-id="{{ $user->id }}"
+                                        data-name="{{ $user->name }}" data-email="{{ $user->email }}"
+                                        data-username="{{ $user->username }}" data-password="{{ $user->password }}"><i
                                             class="fas fa-user-edit"></i></a>
                                     <a href=""
                                         class="btn text-danger {{ auth()->user()->name == $user->name ? 'disabled' : '' }}"
@@ -61,4 +64,32 @@
         </div>
     </div>
     @include('admin.modal.modalTambahAdmin')
+    @include('admin.modal.modalEditAdmin')
+
+    {{-- script --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'csrftoken': '{{ csrf_token() }}'
+            }
+        });
+    </script>
+
+    <script>
+        $(document).on('click', '.edit-admin', function(e) {
+            e.preventDefault();
+
+            let id = $(this).data('id');
+            let name = $(this).data('name');
+            let email = $(this).data('email');
+            let username = $(this).data('username');
+
+            $('#curr_name').val(name);
+            $('#curr_email').val(email);
+            $('#curr_username').val(username);
+
+        });
+    </script>
 @endsection
