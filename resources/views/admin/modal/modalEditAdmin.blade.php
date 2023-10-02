@@ -2,11 +2,12 @@
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <form action="" method="post" id="formEditAdmin">
         @csrf
+        <input type="hidden" id="curr_id">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Edit Admin</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btn-close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btn-close-admin">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>

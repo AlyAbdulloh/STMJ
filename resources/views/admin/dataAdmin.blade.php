@@ -27,7 +27,7 @@
                     </div>
                 </div> --}}
             </div>
-            <div class="card-body">
+            <div class="card-body" id="table-data">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -78,6 +78,7 @@
     </script>
 
     <script>
+        // edit data
         $(document).on('click', '.edit-admin', function(e) {
             e.preventDefault();
 
@@ -86,10 +87,45 @@
             let email = $(this).data('email');
             let username = $(this).data('username');
 
+            $('#curr_id').val(id);
             $('#curr_name').val(name);
             $('#curr_email').val(email);
             $('#curr_username').val(username);
 
+        });
+
+        $(document).on('click', '.EditAdmin', function(e) {
+            e.preventDefault();
+
+            let id = $('#curr_id').val();
+            let name = $('#curr_name').val();
+            let email = $('#curr_email').val();
+            let username = $('#curr_username').val();
+            let password = $('#curr_password').val();
+
+            $.ajax({
+                url: "{{ route('admin.update') }}",
+                method: "post",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    'id': id,
+                    'name': name,
+                    'email': email,
+                    'username': username,
+                    'password': password
+                },
+                success: (response) => {
+                    $("#btn-close-admin").click();
+                    $("#formEditAdmin")[0].reset();
+                    $('#table-data').html(response);
+                    // console.log(response);
+                },
+                error: (response) => {
+                    console.log(response);
+                }
+            });
         });
     </script>
 @endsection
