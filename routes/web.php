@@ -37,6 +37,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('adm
 // controller data admin
 Route::get('/dataAdmin', [AdminController::class, 'index'])->middleware('admin');
 Route::post('/Admin-update', [AdminController::class, 'update'])->name('admin.update')->middleware('admin');
+Route::delete('/admin-delete/{id}', [AdminController::class, 'destroy'])->middleware('admin');
 
 // cotroller kategori
 Route::get('/kategori', [KategoriController::class, 'index']);

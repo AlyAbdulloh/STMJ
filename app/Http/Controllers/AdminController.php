@@ -32,4 +32,13 @@ class AdminController extends Controller
         return view('admin.pagination.paginate_admin', compact('users'))->render();
         // return $request->password;
     }
+
+    public function destroy(string $id)
+    {
+        User::find($id)->delete();
+        $users = User::latest()->paginate(5);
+
+        return view('admin.pagination.paginate_admin', compact('users'))->render();
+        // return $id;
+    }
 }

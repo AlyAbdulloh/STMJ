@@ -52,8 +52,9 @@
                                         data-username="{{ $user->username }}" data-password="{{ $user->password }}"><i
                                             class="fas fa-user-edit"></i></a>
                                     <a href=""
-                                        class="btn text-danger {{ auth()->user()->name == $user->name ? 'disabled' : '' }}"
-                                        style="font-size: 23px"><i class="fas fa-user-times"></i></a>
+                                        class="btn text-danger {{ auth()->user()->name == $user->name ? 'disabled' : '' }} delete-admin"
+                                        data-id="{{ $user->id }}" style="font-size: 23px"><i
+                                            class="fas fa-user-times"></i></a>
                                 </td>
                             </tr>
                         @endforeach
@@ -121,6 +122,27 @@
                     $("#formEditAdmin")[0].reset();
                     $('#table-data').html(response);
                     // console.log(response);
+                },
+                error: (response) => {
+                    console.log(response);
+                }
+            });
+        });
+
+        //delete admin
+        $(document).on('click', '.delete-admin', function(e) {
+            e.preventDefault();
+            let id = $(this).data('id');
+
+            $.ajax({
+                url: "/admin-delete/" + id,
+                type: "delete",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: (response) => {
+                    // console.log(response);
+                    $('#table-data').html(response);
                 },
                 error: (response) => {
                     console.log(response);

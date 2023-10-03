@@ -21,8 +21,8 @@
                         data-email="{{ $user->email }}" data-username="{{ $user->username }}"
                         data-password="{{ $user->password }}"><i class="fas fa-user-edit"></i></a>
                     <a href=""
-                        class="btn text-danger {{ auth()->user()->name == $user->name ? 'disabled' : '' }}"
-                        style="font-size: 23px"><i class="fas fa-user-times"></i></a>
+                        class="btn text-danger {{ auth()->user()->name == $user->name ? 'disabled' : '' }} delete-admin"
+                        data-id="{{ $user->id }}" style="font-size: 23px"><i class="fas fa-user-times"></i></a>
                 </td>
             </tr>
         @endforeach
