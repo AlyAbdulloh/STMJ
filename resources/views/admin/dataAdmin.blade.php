@@ -79,6 +79,27 @@
     </script>
 
     <script>
+        function checkInputs(inputFields) {
+            let isEmpty = false;
+            inputFields.forEach(input => {
+                if (input.value.trim() === '') {
+                    isEmpty = true;
+                }
+            });
+            return isEmpty;
+        }
+
+        function toggleSubmitButton(inputFields) {
+            if (checkInputs(inputFields)) {
+                // submitButton.attr("disabled", true);
+                $(".EditAdmin").attr("disabled", true);
+                // console.log(true);
+            } else {
+                // console.log(false);
+                $(".EditAdmin").attr("disabled", false);
+            }
+        }
+
         // edit data
         $(document).on('click', '.edit-admin', function(e) {
             e.preventDefault();
@@ -128,6 +149,15 @@
                 }
             });
         });
+
+        let formEditAdmin = document.getElementById('formEditAdmin');
+        let inputFormEditAdmin = formEditAdmin.querySelectorAll('input');
+        let btnEditAdmin = document.getElementsByClassName('EditAdmin');
+
+        $('#formEditAdmin').on('input', function() {
+            toggleSubmitButton(inputFormEditAdmin);
+        })
+        toggleSubmitButton(inputFormEditAdmin);
 
         //delete admin
         $(document).on('click', '.delete-admin', function(e) {
