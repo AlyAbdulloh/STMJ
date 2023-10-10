@@ -6,7 +6,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Tambah Admin</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btn-close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btn-close-add">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>

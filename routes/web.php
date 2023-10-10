@@ -35,9 +35,11 @@ Route::get('/', function () {
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('admin');
 
 // controller data admin
+Route::post('/admin-add', [AdminController::class, 'store'])->name('admin.store')->middleware('admin');
 Route::get('/dataAdmin', [AdminController::class, 'index'])->middleware('admin');
 Route::post('/Admin-update', [AdminController::class, 'update'])->name('admin.update')->middleware('admin');
 Route::delete('/admin-delete/{id}', [AdminController::class, 'destroy'])->middleware('admin');
+
 
 // cotroller kategori
 Route::get('/kategori', [KategoriController::class, 'index']);

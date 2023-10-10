@@ -14,6 +14,24 @@ class AdminController extends Controller
         return view('admin.dataAdmin', ['users' => $users]);
     }
 
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|max:200',
+            'email' => 'required|unique:users|email:dns',
+            'username' => 'required|unique:users|max:255',
+            'password' => 'required|min:5'
+        ]);
+
+        $validatedData['password'] = Hash::make($validatedData['password']);
+        $validatedData['role'] = 'admin';
+
+        User::create($validatedData);
+        $users = User::latest()->paginate(5);
+
+        return view('admin.pagination.paginate_admin', compact('users'))->render();
+    }
+
     public function update(Request $request)
     {
         $validatedData = $request->validate([

@@ -89,16 +89,49 @@
             return isEmpty;
         }
 
-        function toggleSubmitButton(inputFields) {
+        function toggleSubmitButton(inputFields, btn) {
             if (checkInputs(inputFields)) {
                 // submitButton.attr("disabled", true);
-                $(".EditAdmin").attr("disabled", true);
+                btn.attr("disabled", true);
                 // console.log(true);
             } else {
                 // console.log(false);
-                $(".EditAdmin").attr("disabled", false);
+                btn.attr("disabled", false);
             }
         }
+
+        // tambah admin
+        $(".tambahAdmin").on('click', function(e) {
+            e.preventDefault()
+
+            let name = $('#name').val();
+            let email = $('#email').val();
+            let username = $('#username').val();
+            let password = $('#password').val();
+
+            $.ajax({
+                url: "{{ route('admin.store') }}",
+                method: "post",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    'name': name,
+                    'email': email,
+                    'username': username,
+                    'password': password
+                },
+                success: (response) => {
+                    $("#btn-close-add").click();
+                    $("#formAddAdmin")[0].reset();
+                    $('#table-data').html(response);
+                    // console.log(response);
+                },
+                error: (response) => {
+                    console.log(response);
+                }
+            });
+        })
 
         // edit data
         $(document).on('click', '.edit-admin', function(e) {
@@ -152,12 +185,12 @@
 
         let formEditAdmin = document.getElementById('formEditAdmin');
         let inputFormEditAdmin = formEditAdmin.querySelectorAll('input');
-        let btnEditAdmin = document.getElementsByClassName('EditAdmin');
+        let btnEditAdmin = $(".EditAdmin");
 
         $('#formEditAdmin').on('input', function() {
-            toggleSubmitButton(inputFormEditAdmin);
+            toggleSubmitButton(inputFormEditAdmin, btnEditAdmin);
         })
-        toggleSubmitButton(inputFormEditAdmin);
+        toggleSubmitButton(inputFormEditAdmin, btnEditAdmin);
 
         //delete admin
         $(document).on('click', '.delete-admin', function(e) {
