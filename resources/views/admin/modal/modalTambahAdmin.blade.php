@@ -13,19 +13,19 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <input type="text" class="form-control" id="name" aria-describedby="name" name="name"
-                            placeholder="Name">
+                            placeholder="Name" required>
                     </div>
                     <div class="form-group">
                         <input type="email" class="form-control" id="email" aria-describedby="email"
-                            name="email" placeholder="Email">
+                            name="email" placeholder="Email" required>
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" id="username" aria-describedby="Username"
-                            name="Username" placeholder="Username">
+                            name="Username" placeholder="Username" required>
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" id="password" aria-describedby="password"
-                            name="password" placeholder="Password">
+                            name="password" placeholder="Password" required>
                     </div>
                 </div>
                 <div class="modal-footer">
