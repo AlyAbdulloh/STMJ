@@ -133,6 +133,19 @@
             });
         })
 
+        $(".close").on('click', function(e) {
+            $("#formAddAdmin")[0].reset();
+        })
+
+        let formTambahAdmin = document.getElementById('formAddAdmin');
+        let inputFormTambahAdmin = formTambahAdmin.querySelectorAll('input');
+        let btnAddAdmin = $(".tambahAdmin");
+
+        $('#formAddAdmin').on('input', function() {
+            toggleSubmitButton(inputFormTambahAdmin, btnAddAdmin);
+        })
+        toggleSubmitButton(inputFormTambahAdmin, btnAddAdmin);
+
         // edit data
         $(document).on('click', '.edit-admin', function(e) {
             e.preventDefault();
