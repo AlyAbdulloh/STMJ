@@ -83,6 +83,27 @@
     </script>
 
     <script>
+        function checkInputs(inputFields) {
+            let isEmpty = false;
+            inputFields.forEach(input => {
+                if (input.value.trim() === '') {
+                    isEmpty = true;
+                }
+            });
+            return isEmpty;
+        }
+
+        function toggleSubmitButton(inputFields, btn) {
+            if (checkInputs(inputFields)) {
+                // submitButton.attr("disabled", true);
+                btn.attr("disabled", true);
+                // console.log(true);
+            } else {
+                // console.log(false);
+                btn.attr("disabled", false);
+            }
+        }
+
         // tambahMenu
         $(document).on('click', '.tambahMenu', function(e) {
             e.preventDefault();
@@ -122,6 +143,17 @@
             });
 
         });
+
+        let formTambaMenu = document.getElementById('formMenu');
+        let inputTambahMenu = formTambaMenu.querySelectorAll('input');
+        let btnTambahMenu = $('.tambahMenu')
+
+        $('#formMenu').on('input', function(e) {
+            e.preventDefault()
+
+            toggleSubmitButton(inputTambahMenu, btnTambahMenu);
+        })
+        toggleSubmitButton(inputTambahMenu, btnTambahMenu);
 
         // edit menu
         $(document).on('click', '.edit-menu', function(e) {
@@ -226,6 +258,7 @@
         }
 
         //search data
+
         $(document).on('keyup', '#searchMenu', function(e) {
             e.preventDefault();
 
