@@ -13,6 +13,7 @@ class AdminController extends Controller
 
         if ($request->ajax()) {
             $admins = User::where('name', 'LIKE', '%' . $request->val . '%')
+                ->where('role', 'admin')
                 ->paginate(5);
             if ($admins->count() > 0) {
                 return view('admin.pagination.paginate_admin', compact('admins'))->render();
@@ -58,9 +59,9 @@ class AdminController extends Controller
         $validatedData['role'] = 'admin';
 
         User::create($validatedData);
-        $users = User::latest()->paginate(5);
+        $admins = User::where('role', 'admin')->paginate(5);
 
-        return view('admin.pagination.paginate_admin', compact('users'))->render();
+        return view('admin.pagination.paginate_admin', compact('admins'))->render();
     }
 
     public function update(Request $request)
@@ -76,18 +77,18 @@ class AdminController extends Controller
         $validatedData['role'] = 'admin';
 
         User::find($request->id)->update($validatedData);
-        $users = User::latest()->paginate(5);
+        $admins = User::where('role', 'admin')->paginate(5);
 
-        return view('admin.pagination.paginate_admin', compact('users'))->render();
+        return view('admin.pagination.paginate_admin', compact('admins'))->render();
         // return $request->password;
     }
 
     public function destroy(string $id)
     {
         User::find($id)->delete();
-        $users = User::latest()->paginate(5);
+        $admins = User::where('role', 'admin')->paginate(5);
 
-        return view('admin.pagination.paginate_admin', compact('users'))->render();
+        return view('admin.pagination.paginate_admin', compact('admins'))->render();
         // return $id;
     }
 }
